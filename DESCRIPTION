@@ -1,0 +1,36 @@
+Package: ropenfda
+Title: openFDA API R Interface
+Version: 0.2.9000
+Authors@R: as.person(c(
+    "Maciej Lazarewicz <maciej@lazarewicz.me> [aut, cre]", 
+    "Manitos Kaushik <manitoshkaushik@yahoo.com> [ctb]"
+  ))
+Description: Query the openFDA Device Adverse Events Database, Device Recalls, and Device Recall Enforcement Reports databases from R.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: testthat,
+    knitr,
+    rmarkdown
+Imports:
+  methods, 
+  dplyr, 
+  httr, 
+  jsonlite, 
+  gsubfn, 
+  ggplot2, 
+  plyr, 
+  tibble, 
+  magrittr, 
+  tidyr,
+  hash,
+  lubridate,
+  purrr
+VignetteBuilder: knitr
+KeepSource: true
+Collate: 
+    'all-classes.R'
+    'help-functions.R'
+    'all-methods.R'
+    'get-data.R'
