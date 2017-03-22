@@ -34,3 +34,5 @@ Collate:
     'help-functions.R'
     'all-methods.R'
     'get-data.R'
+URL: http://github.com/mlazarew/ropenfda
+BugReports: http://github.com/mlazarew/ropenfda/issues
