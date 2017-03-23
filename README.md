@@ -1,5 +1,5 @@
 
-The package is a convinence tools for accessing openFDA API <https://open.fda.gov>. The package enables users to query the Device Adverse Events, Device Classification, Device 510(k) Clearances, Device PMA, Device Registrations and Listings, Device Recalls, Device Recall Enforcement, and Unique Device Identifier databases. For example, a user can query information about recall events about the specific device. More information about the openFDA API is located at <https://open.fda.gov/api/reference/>. Right now, this package is limited in scope to the medical devices category. Drug and food are not supported yet.
+The package is a convinence tool for accessing openFDA API <https://open.fda.gov>. The package enables users to query the Device Adverse Events, Device Classification, Device 510(k) Clearances, Device PMA, Device Registrations and Listings, Device Recalls, Device Recall Enforcement, and Unique Device Identifier databases. For example, a user can query information about recall events about the specific device. More information about the openFDA API is located at <https://open.fda.gov/api/reference/>. Right now, this package is limited in scope to the medical devices category. Drug and food are not supported yet.
 
 Packet Setup
 ------------
@@ -45,7 +45,7 @@ In order to access original, not aggregated data, we simply omit the `count_var`
 
 ``` r
 res <- openfda(query = "", limit = 100)
-#> Warning: Only 100 records retrieved from the total of 5996510
+#> Warning: Only 100 records retrieved from the total of 6071400
 res[1:4, c(3,4,10,13)]
 #> # A tibble: 4 × 4
 #>   event_location report_to_fda         event_type      report_number
