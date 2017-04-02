@@ -41,7 +41,7 @@ test_that("Methods on CountData", {
   expect_equal(dim(head(res0)), c(6,2))
   expect_equal(dim(tail(res0)), c(6,2))
   df <- as.data.frame(res0)
-  expect_equal(dim(df), c(11066,2))
+  expect_equal(dim(df)[2], 2)
   expect_is(df, "data.frame")
 })
 
@@ -56,4 +56,34 @@ test_that("subsetting methods", {
   expect_is(res0[,"patient"]@result, class(tibble::tibble()))
   expect_is(res0[1,"patient"]@result, class(tibble::tibble()))
   expect_is(res0[1,1]@result, class(tibble::tibble()))
+})
+
+test_that("`openfda` raw fetch drug", {
+  expect_warning(res0 <- openfda("", limit = 10, category = "drug"))
+  res <- as_tibble(res0)
+  expect_equal(nrow(res), 10)
+  expect_equal(ncol(res), 35)
+  expect_is(res0, "RawDrugEvent")
+})
+
+test_that("`openfda` counter fetch drug", {
+  res0 <- openfda("", category = "drug", count_var = "companynumb")
+  res <- as_tibble(res0)
+  expect_is(res0, "CountDrugEvent")
+  expect_equal(ncol(res), 2)
+})
+
+test_that("`openfda` raw fetch food", {
+  expect_warning(res0 <- openfda("", limit = 10, category = "food"))
+  res <- as_tibble(res0)
+  expect_equal(nrow(res), 10)
+  expect_equal(ncol(res), 9)
+  expect_is(res0, "RawFoodEvent")
+})
+
+test_that("`openfda` counter fetch food", {
+  res0 <- openfda("", category = "food", count_var = "date_created")
+  res <- as_tibble(res0)
+  expect_is(res0, "CountFoodEvent")
+  expect_equal(ncol(res), 2)
 })

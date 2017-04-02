@@ -120,85 +120,142 @@ setClass("RawData",
          contains = "Data"
 )
 
-#-------------------------------------------------------------------------------
+# Device UDI -------------------------------------------------------------------
 #' \code{RawDeviceUdi} A specialized subclass representing fetched data from API.
 #' @rdname Data-class
 setClass("RawDeviceUdi", contains = "RawData")
 
+#' \code{CountDeviceUdi} A specialized subclass representing fetched data
+#' from API.
+#' @rdname Data-class
+setClass("CountDeviceUdi", contains = "CountData")
+
+# Device Event -----------------------------------------------------------------
 #' \code{RawDeviceEvent} A specialized subclass representing fetched data from
 #' API.
 #' @rdname Data-class
 setClass("RawDeviceEvent", contains = "RawData")
-
-#' \code{RawDeviceClassification} A specialized subclass representing fetched
-#' data from API.
-#' @rdname Data-class
-setClass("RawDeviceClassification", contains = "RawData")
-
-#' \code{RawDevice510k} A specialized subclass representing fetched data from
-#' API.
-#' @rdname Data-class
-setClass("RawDevice510k", contains = "RawData")
-
-
-#' \code{RawDevicePma} A specialized subclass representing fetched data from
-#' API.
-#' @rdname Data-class
-setClass("RawDevicePma", contains = "RawData")
-
-#' \code{RawDeviceRegistrationlisting} A specialized subclass representing
-#' fetched data from API.
-#' @rdname Data-class
-setClass("RawDeviceRegistrationlisting", contains = "RawData")
-
-#' \code{RawDeviceRecall} A specialized subclass representing fetched data from
-#' API.
-#' @rdname Data-class
-setClass("RawDeviceRecall", contains = "RawData")
-
-#' \code{RawDeviceEnforcement} A specialized subclass representing fetched data
-#' from API.
-#' @rdname Data-class
-setClass("RawDeviceEnforcement", contains = "RawData")
-
-#-------------------------------------------------------------------------------
 
 #' \code{CountDeviceEvent} A specialized subclass representing fetched data from
 #' API.
 #' @rdname Data-class
 setClass("CountDeviceEvent", contains = "CountData")
 
+# Device Classification --------------------------------------------------------
+#' \code{RawDeviceClassification} A specialized subclass representing fetched
+#' data from API.
+#' @rdname Data-class
+setClass("RawDeviceClassification", contains = "RawData")
+
 #' \code{CountDeviceClassification} A specialized subclass representing fetched
 #' data from API.
 #' @rdname Data-class
 setClass("CountDeviceClassification", contains = "CountData")
 
+# Device 510k ------------------------------------------------------------------
+#' \code{RawDevice510k} A specialized subclass representing fetched data from
+#' API.
+#' @rdname Data-class
+setClass("RawDevice510k", contains = "RawData")
+
 #' \code{CountDevice510k} A specialized subclass representing fetched data from
 #' API.
 #' @rdname Data-class
-setClass("CountDevice510k", contains = "CountData")
+setClass("CountD evice510k", contains = "CountData")
+
+# Device PMA -------------------------------------------------------------------
+#' \code{RawDevicePma} A specialized subclass representing fetched data from
+#' API.
+#' @rdname Data-class
+setClass("RawDevicePma", contains = "RawData")
 
 #' \code{CountDevicePma} A specialized subclass representing fetched data from
 #' API.
 #' @rdname Data-class
 setClass("CountDevicePma", contains = "CountData")
 
+# Device Registrationlisting ---------------------------------------------------
+#' \code{RawDeviceRegistrationlisting} A specialized subclass representing
+#' fetched data from API.
+#' @rdname Data-class
+setClass("RawDeviceRegistrationlisting", contains = "RawData")
+
 #' \code{CountDeviceRegistrationlisting} A specialized subclass representing
 #' fetched data from API.
 #' @rdname Data-class
 setClass("CountDeviceRegistrationlisting", contains = "CountData")
+
+# Device Recall ----------------------------------------------------------------
+#' \code{RawDeviceRecall} A specialized subclass representing fetched data from
+#' API.
+#' @rdname Data-class
+setClass("RawDeviceRecall", contains = "RawData")
 
 #' \code{CountDeviceRecall} A specialized subclass representing fetched data
 #' from API.
 #' @rdname Data-class
 setClass("CountDeviceRecall", contains = "CountData")
 
+# Device Enforcement -----------------------------------------------------------
+#' \code{RawDeviceEnforcement} A specialized subclass representing fetched data
+#' from API.
+#' @rdname Data-class
+setClass("RawDeviceEnforcement", contains = "RawData")
+
 #' \code{CountDeviceEnforcement} A specialized subclass representing fetched
 #' data from API.
 #' @rdname Data-class
 setClass("CountDeviceEnforcement", contains = "CountData")
 
-#' \code{CountDeviceUdi} A specialized subclass representing fetched data
+# Drug Event -------------------------------------------------------------------
+#' \code{RawDrugEvent} A specialized subclass representing fetched data from API.
+#' @rdname Data-class
+setClass("RawDrugEvent", contains = "RawData")
+
+#' \code{CountDrugEvent} A specialized subclass representing fetched data from
+#' API.
+#' @rdname Data-class
+setClass("CountDrugEvent", contains = "CountData")
+
+# Drug Label -------------------------------------------------------------------
+#' \code{RawDrugLabel} A specialized subclass representing fetched data from API.
+#' @rdname Data-class
+setClass("RawDrugLabel", contains = "RawData")
+
+#' \code{CountDrugLabel} A specialized subclass representing fetched data from
+#' API.
+#' @rdname Data-class
+setClass("CountDrugLabel", contains = "CountData")
+
+# Drug Enforcement -------------------------------------------------------------
+#' \code{RawDrugEnforcement} A specialized subclass representing fetched data
 #' from API.
 #' @rdname Data-class
-setClass("CountDeviceUdi", contains = "CountData")
+setClass("RawDrugEnforcement", contains = "RawData")
+
+#' \code{CountDrugEnforcement} A specialized subclass representing fetched data from
+#' API.
+#' @rdname Data-class
+setClass("CountDrugEnforcement", contains = "CountData")
+
+# Food Enforcement -------------------------------------------------------------
+#' \code{RawFoodEnforcement} A specialized subclass representing fetched data
+#' from API.
+#' @rdname Data-class
+setClass("RawFoodEnforcement", contains = "RawData")
+
+#' \code{CountFoodEnforcement} A specialized subclass representing fetched data from
+#' API.
+#' @rdname Data-class
+setClass("CountFoodEnforcement", contains = "CountData")
+
+# Food Event -------------------------------------------------------------------
+#' \code{RawFoodEvent} A specialized subclass representing fetched data from API.
+#' @rdname Data-class
+setClass("RawFoodEvent", contains = "RawData")
+
+#' \code{CountFoodEvent} A specialized subclass representing fetched data from
+#' API.
+#' @rdname Data-class
+setClass("CountFoodEvent", contains = "CountData")
+

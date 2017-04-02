@@ -20,10 +20,8 @@ NULL
 #'   For category 'device': "event", "classification", "510k", "pma",
 #'                          "registrationlisting", "recall", "enforcement",
 #'                          "udi"
-#'   For category 'drug': Not supported yet.
-#'   For category 'food': Not supported yet.
 #' @param category  character A category of the information to be retrieved.
-#'   Available options are: "device". "drug", "food" are not supported yet.
+#'   Available options are: "device", "drug", "food".
 #' @param api_key   character A user api key.
 #' @param limit     numeric   A number of events to be returned. Not applicable
 #'   to count data.
@@ -58,6 +56,10 @@ NULL
 #'   '(adverse_event_flag == "Y" and single_use_flag == "N"))')
 #'
 #' obj6 <- openfda(query, "date_facility_aware", limit = 10)
+#'
+#' obj7 <- openfda(query, limit = 10, category = "drug")
+#'
+#' obj8 <- openfda(query, limit = 10, category = "food")
 #' @export
 get_query <- function(query = "",
                       count_var = NULL,

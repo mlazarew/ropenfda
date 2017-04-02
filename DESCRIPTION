@@ -1,6 +1,6 @@
 Package: ropenfda
 Title: openFDA API R Interface
-Version: 0.2.9001
+Version: 0.2.9002
 Authors@R: as.person(c(
     "Maciej Lazarewicz <maciej@lazarewicz.me> [aut, cre]", 
     "Manitos Kaushik <manitoshkaushik@yahoo.com> [ctb]"
