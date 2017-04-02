@@ -1,6 +1,6 @@
 Package: ropenfda
 Title: openFDA API R Interface
-Version: 0.2.9000
+Version: 0.2.9001
 Authors@R: as.person(c(
     "Maciej Lazarewicz <maciej@lazarewicz.me> [aut, cre]", 
     "Manitos Kaushik <manitoshkaushik@yahoo.com> [ctb]"
@@ -18,7 +18,8 @@ Imports:
   dplyr, 
   httr, 
   jsonlite, 
-  gsubfn, 
+  gsubfn,
+  proto,
   ggplot2, 
   plyr, 
   tibble, 
