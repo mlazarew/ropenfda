@@ -1,0 +1,181 @@
+---
+title: "ropenfda Package Summary"
+author: "Maciej Lazarewicz"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ropenfda Package Summary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE, message = FALSE}
+opt <- options()
+options(tibble.max_extra_cols = 2)
+library(hash)
+```
+The package is a convinence tools for accessing openFDA API https://open.fda.gov. The package enables users to query the Device Adverse Events, Device Classification, Device 510(k) Clearances, Device PMA, Device Registrations and Listings, Device Recalls, Device Recall Enforcement, and Unique Device Identifier databases. For example, a user can query information about recall events about the specific device. More information about the openFDA API is located at https://open.fda.gov/api/reference/.
+
+## Packet Setup
+```{r}
+library(ropenfda)
+```
+
+## Count Data
+Data can be fetched from the openFDA API using `openfda` method. The resulting object is an S4 class specific to the data that was retrieved.
+
+```{r}
+res <- openfda(query = "", count_var = "date_facility_aware")
+head(res, 3)
+class(res)
+```
+Parameter `query`, which in this example is an empty string, is getting all available data from the default category `device` and default database `event`. The parameter `count_var` specifies a field which unique values are counted and provided as a result. Dates are automatically converted into the `Date` objects.  The class of this object is `CountDeviceEvent` class.
+
+A quick look into the count data can be done with `plot` method. We will quickly notice that there are few points with wrong dates beyond year 2017!
+
+```{r, fig.width=7}
+plot(res)
+```
+
+Parameter `category` allows also to access `drug` and `food` data.
+
+```{r}
+res <- openfda(query = "", category = "drug", count_var = "companynumb")
+head(res, 3)
+class(res)
+
+res <- openfda(query = "", category = "food", count_var = "date_created")
+head(res, 3)
+class(res)
+```
+
+
+## Raw Data
+In order to access original, not aggregated data, we simply omit the `count_var` parameter. For raw data openFDA API returns up to 5100 rows. If we do not specify the `limit` parameter, the default value is 5100. 
+
+```{r}
+res <- openfda(query = "", limit = 100)
+res[1:4, c(3,4,10,13)]
+```
+
+Similarly, quick look into data can ba done with the `plot` method:
+
+```{r, message=FALSE, warning=FALSE, fig.width=7}
+plot(res, i = "date_of_event", j = "event_type")
+```
+
+## Other Databases
+To access the device recall information we would speficy the parameter `db`:
+
+```{r}
+res <- openfda(query = "", db = "recall", limit = 10)
+head(res)
+```
+
+## Convenience Functions
+Some convenience methods like `head` , `tail`, `[`, `as_tibble`, `as.data.frame`, `show`, `names`, `nrow`, `ncol` work as expected:
+
+```{r}
+cat("dim:", dim(res), "nrow:", nrow(res), "ncol:", ncol(res))
+names(res)
+```
+
+## Extracting Data as a Tibble
+`as_tibble` extracts the data form the object as a tibble. It is advised to use `as_tibble` since in some cases the raw data might contain nested data frames and it might trigger problems in RStudio with displaying it on the screen when extracted as a `data.frame`. 
+
+```{r}
+head(as_tibble(res), 3)
+class(as_tibble(res))
+```
+
+## Extracting Data as a Data Frame
+Data in the `Data` object can also be accessed as data.frame by applying `as.data.frame` function.
+
+```{r}
+res <- openfda(query = "", count_var = "date_facility_aware")
+x <- as.data.frame(res)
+class(x)
+head(x)
+```
+
+## Complex Queries
+Query strings can be complex, composed as a logical expression of conditions imposed on the fields. 
+
+```{r}
+query_string <- '((adverse_event_flag == "N" and single_use_flag == "Y") or (adverse_event_flag == Y+N+MP+P and single_use_flag == N+Y)) and date_received in [20130101,20130105]'
+res1 <- openfda(query_string, limit = 10)
+dim(res1)
+```
+
+## Phrases
+Quoted phrases are searched as a whole entity and records that contain that entity will be returned.
+
+```{r}
+res2 <- openfda(query = 'manufacturer_g1_name == "MEDTRONIC NEUROMODULATION"', 
+                limit = 1)
+```
+
+You can also search for a single word. The next query is looking only for the word `MEDTRONIC` and returns more records than the previous which was looking for the whole phrase `MEDTRONIC NEUROMODULATION`.
+
+```{r}
+res2 <- openfda(query = 'manufacturer_g1_name == "MEDTRONIC"', limit = 1)
+```
+
+## Multiple Field Values
+If you want to look for `MEDTRONIC` or `NEUROMODULATION`, use `+` between the words/phrases.
+
+```{r}
+res2 <- openfda(query = 'manufacturer_g1_name == "MEDTRONIC"+"NEUROMODULATION"', 
+                limit = 1)
+```
+
+## Exact Search
+In order to look for records with fileds equal exectly to the given phrase, one nees to use `.exact` extension to the field name. 
+
+```{r}
+res3 <- openfda(query = 'manufacturer_g1_name.exact == "MEDTRONIC NEUROMODULATION"', 
+                limit = 1)
+```
+
+## Object Oriented Resprsentation
+There are two families of classes: `Query` and `Data`. The `Query` class represnts the query to the openFDA **before** retrieving the actual data from the API.
+
+```{r}
+query <- get_query(query = 'manufacturer_g1_name == "MEDTRONIC"', limit = 1)
+query
+```
+
+The `Data` class, represents the data that was fetched from the openFDA servers. 
+
+```{r}
+data <- fetch(query)
+data
+```
+
+The class of that object is specific to the result type. In this case it is the `raw` data type, category of `device` and database `event`:
+
+```{r}
+class(data)
+```
+
+## Unfolding The Nested Data
+In some instances, the data returned from the API is a nested frame. For instance, in the case of the `device` `event` data, some records contain in the field `patient` nested `data.frame`. Also, fields `device` and `mdr_text` are `data.frames`.
+ 
+```{r}
+res <- openfda(query = "", limit = 100)
+res[1:3, c("patient", "device", "mdr_text")]
+```
+
+The method `unfold` converts nested `tibble` into the unnested `tibble`. The resulting tibble has more rows and more columns than the original one.
+
+```{r}
+res_unfold <- unfold(res)
+data_unfold <- as_tibble(res_unfold)
+dim(res)
+dim(data_unfold)
+head(setdiff(names(data_unfold), names(res)))
+```
+
+```{r, echo=FALSE}
+options(opt)
+```

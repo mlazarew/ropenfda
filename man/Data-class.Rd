@@ -6,21 +6,31 @@
 \alias{CountData-class}
 \alias{RawData-class}
 \alias{RawDeviceUdi-class}
-\alias{RawDeviceEvent-class}
-\alias{RawDeviceClassification-class}
-\alias{RawDevice510k-class}
-\alias{RawDevicePma-class}
-\alias{RawDeviceRegistrationlisting-class}
-\alias{RawDeviceRecall-class}
-\alias{RawDeviceEnforcement-class}
-\alias{CountDeviceEvent-class}
-\alias{CountDeviceClassification-class}
-\alias{CountDevice510k-class}
-\alias{CountDevicePma-class}
-\alias{CountDeviceRegistrationlisting-class}
-\alias{CountDeviceRecall-class}
-\alias{CountDeviceEnforcement-class}
 \alias{CountDeviceUdi-class}
+\alias{RawDeviceEvent-class}
+\alias{CountDeviceEvent-class}
+\alias{RawDeviceClassification-class}
+\alias{CountDeviceClassification-class}
+\alias{RawDevice510k-class}
+\alias{CountD evice510k-class}
+\alias{RawDevicePma-class}
+\alias{CountDevicePma-class}
+\alias{RawDeviceRegistrationlisting-class}
+\alias{CountDeviceRegistrationlisting-class}
+\alias{RawDeviceRecall-class}
+\alias{CountDeviceRecall-class}
+\alias{RawDeviceEnforcement-class}
+\alias{CountDeviceEnforcement-class}
+\alias{RawDrugEvent-class}
+\alias{CountDrugEvent-class}
+\alias{RawDrugLabel-class}
+\alias{CountDrugLabel-class}
+\alias{RawDrugEnforcement-class}
+\alias{CountDrugEnforcement-class}
+\alias{RawFoodEnforcement-class}
+\alias{CountFoodEnforcement-class}
+\alias{RawFoodEvent-class}
+\alias{CountFoodEvent-class}
 \title{Data class.}
 \description{
 \code{Data} is an S4 virtual class that represents a data fetched from the
@@ -34,50 +44,77 @@ open FDA API. It inherits from \code{Data} class.
 
 \code{RawDeviceUdi} A specialized subclass representing fetched data from API.
 
+\code{CountDeviceUdi} A specialized subclass representing fetched data
+from API.
+
 \code{RawDeviceEvent} A specialized subclass representing fetched data from
+API.
+
+\code{CountDeviceEvent} A specialized subclass representing fetched data from
 API.
 
 \code{RawDeviceClassification} A specialized subclass representing fetched
 data from API.
 
+\code{CountDeviceClassification} A specialized subclass representing fetched
+data from API.
+
 \code{RawDevice510k} A specialized subclass representing fetched data from
+API.
+
+\code{CountDevice510k} A specialized subclass representing fetched data from
 API.
 
 \code{RawDevicePma} A specialized subclass representing fetched data from
 API.
 
+\code{CountDevicePma} A specialized subclass representing fetched data from
+API.
+
 \code{RawDeviceRegistrationlisting} A specialized subclass representing
+fetched data from API.
+
+\code{CountDeviceRegistrationlisting} A specialized subclass representing
 fetched data from API.
 
 \code{RawDeviceRecall} A specialized subclass representing fetched data from
 API.
 
-\code{RawDeviceEnforcement} A specialized subclass representing fetched data
+\code{CountDeviceRecall} A specialized subclass representing fetched data
 from API.
 
-\code{CountDeviceEvent} A specialized subclass representing fetched data from
-API.
-
-\code{CountDeviceClassification} A specialized subclass representing fetched
-data from API.
-
-\code{CountDevice510k} A specialized subclass representing fetched data from
-API.
-
-\code{CountDevicePma} A specialized subclass representing fetched data from
-API.
-
-\code{CountDeviceRegistrationlisting} A specialized subclass representing
-fetched data from API.
-
-\code{CountDeviceRecall} A specialized subclass representing fetched data
+\code{RawDeviceEnforcement} A specialized subclass representing fetched data
 from API.
 
 \code{CountDeviceEnforcement} A specialized subclass representing fetched
 data from API.
 
-\code{CountDeviceUdi} A specialized subclass representing fetched data
+\code{RawDrugEvent} A specialized subclass representing fetched data from API.
+
+\code{CountDrugEvent} A specialized subclass representing fetched data from
+API.
+
+\code{RawDrugLabel} A specialized subclass representing fetched data from API.
+
+\code{CountDrugLabel} A specialized subclass representing fetched data from
+API.
+
+\code{RawDrugEnforcement} A specialized subclass representing fetched data
 from API.
+
+\code{CountDrugEnforcement} A specialized subclass representing fetched data from
+API.
+
+\code{RawFoodEnforcement} A specialized subclass representing fetched data
+from API.
+
+\code{CountFoodEnforcement} A specialized subclass representing fetched data from
+API.
+
+\code{RawFoodEvent} A specialized subclass representing fetched data from API.
+
+\code{CountFoodEvent} A specialized subclass representing fetched data from
+API.
 }
 \section{Slots}{
 

@@ -21,12 +21,10 @@ returned.}
 \item{db}{character A name of the openFDA database. Options are:
 For category 'device': "event", "classification", "510k", "pma",
                        "registrationlisting", "recall", "enforcement",
-                       "udi"
-For category 'drug': Not supported yet.
-For category 'food': Not supported yet.}
+                       "udi"}
 
 \item{category}{character A category of the information to be retrieved.
-Available options are: "device". "drug", "food" are not supported yet.}
+Available options are: "device", "drug", "food".}
 
 \item{api_key}{character A user api key.}
 
@@ -83,4 +81,8 @@ query <- paste0(
   '(adverse_event_flag == "Y" and single_use_flag == "N"))')
 
 obj6 <- openfda(query, "date_facility_aware", limit = 10)
+
+obj7 <- openfda(query, limit = 10, category = "drug")
+
+obj8 <- openfda(query, limit = 10, category = "food")
 }

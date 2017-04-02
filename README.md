@@ -1,5 +1,5 @@
 
-The package is a convinence tool for accessing openFDA API <https://open.fda.gov>. The package enables users to query the Device Adverse Events, Device Classification, Device 510(k) Clearances, Device PMA, Device Registrations and Listings, Device Recalls, Device Recall Enforcement, and Unique Device Identifier databases. For example, a user can query information about recall events about the specific device. More information about the openFDA API is located at <https://open.fda.gov/api/reference/>. Right now, this package is limited in scope to the medical devices category. Drug and food are not supported yet.
+The package is a convinence tool for accessing openFDA API <https://open.fda.gov>. The package enables users to query the Device Adverse Events, Device Classification, Device 510(k) Clearances, Device PMA, Device Registrations and Listings, Device Recalls, Device Recall Enforcement, and Unique Device Identifier databases. For example, a user can query information about recall events about the specific device. More information about the openFDA API is located at <https://open.fda.gov/api/reference/>.
 
 Packet Setup
 ------------
@@ -36,7 +36,37 @@ A quick look into the count data can be done with `plot` method. We will quickly
 plot(res)
 ```
 
-![](README-unnamed-chunk-4-1.png)
+![](README-figures/README-unnamed-chunk-4-1.png)
+
+Parameter `category` allows also to access `drug` and `food` data.
+
+``` r
+res <- openfda(query = "", category = "drug", count_var = "companynumb")
+head(res, 3)
+#> # A tibble: 3 × 2
+#>     term   count
+#>    <chr>   <int>
+#> 1     us 4027882
+#> 2    inc  807621
+#> 3 pfizer  502142
+class(res)
+#> [1] "CountDrugEvent"
+#> attr(,"package")
+#> [1] "ropenfda"
+
+res <- openfda(query = "", category = "food", count_var = "date_created")
+head(res, 3)
+#> # A tibble: 3 × 2
+#>         time count
+#>       <date> <int>
+#> 1 2004-01-01  2595
+#> 2 2005-01-01  2013
+#> 3 2006-01-01  1788
+class(res)
+#> [1] "CountFoodEvent"
+#> attr(,"package")
+#> [1] "ropenfda"
+```
 
 Raw Data
 --------
@@ -62,6 +92,6 @@ Similarly, quick look into data can ba done with the `plot` method:
 plot(res, i = "date_of_event", j = "event_type")
 ```
 
-![](README-unnamed-chunk-6-1.png)
+![](README-figures/README-unnamed-chunk-7-1.png)
 
-For more details see vignette summary.Rmd
+For more details see the [vignette](inst/doc/summary.html)

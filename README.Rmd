@@ -7,7 +7,7 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "README-figures/README-"
 )
 ```
 
@@ -61,4 +61,4 @@ plot(res, i = "date_of_event", j = "event_type")
 ```
 
 
-For more details see vignette summary.Rmd
+For more details see the [vignette](inst/doc/summary.html)
