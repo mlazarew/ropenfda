@@ -94,4 +94,4 @@ plot(res, i = "date_of_event", j = "event_type")
 
 ![](README-figures/README-unnamed-chunk-7-1.png)
 
-For more details see the [vignette](inst/doc/summary.html)
+For more details see the [vignette](inst/doc/summary.pdf)

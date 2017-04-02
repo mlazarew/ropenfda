@@ -61,4 +61,4 @@ plot(res, i = "date_of_event", j = "event_type")
 ```
 
 
-For more details see the [vignette](inst/doc/summary.html)
+For more details see the [vignette](inst/doc/summary.pdf)
